@@ -1,0 +1,32 @@
+<p>add-translate works!</p>
+<button mat-raised-button color="primary" (click)="addTranslate()">
+  Add translate
+</button>
+<button mat-raised-button color="primary" (click)="clear()">
+  Clear translates
+</button>
+
+<select
+  [(ngModel)]="translate.originalLanguage"
+  (ngModelChange)="onOriginalTextChanged()"
+>
+  <option *ngFor="let language of languages" [ngValue]="language">{{
+    language
+  }}</option>
+</select>
+
+<select
+  [(ngModel)]="translate.targetLanguage"
+  (ngModelChange)="onOriginalTextChanged()"
+>
+  <option *ngFor="let language of languages" [ngValue]="language">{{
+    language
+  }}</option>
+</select>
+
+<input
+  [(ngModel)]="translate.originalText"
+  placeholder="input"
+  (ngModelChange)="onOriginalTextChanged()"
+/>
+<input [(ngModel)]="translate.translatedText" />

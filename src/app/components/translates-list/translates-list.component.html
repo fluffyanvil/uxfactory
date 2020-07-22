@@ -1,0 +1,7 @@
+<h2>My Heroes</h2>
+<p>{{ translatesService.getTranslates().length }}</p>
+<ul class="heroes">
+  <li *ngFor="let translate of translatesService.getTranslates()">
+    <span class="badge">{{ translate.originalText }}</span>
+  </li>
+</ul>

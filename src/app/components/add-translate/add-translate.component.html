@@ -1,32 +1,59 @@
-<p>add-translate works!</p>
-<button mat-raised-button color="primary" (click)="addTranslate()">
-  Add translate
-</button>
-<button mat-raised-button color="primary" (click)="clear()">
-  Clear translates
-</button>
-
-<select
-  [(ngModel)]="translate.originalLanguage"
-  (ngModelChange)="onOriginalTextChanged()"
->
-  <option *ngFor="let language of languages" [ngValue]="language">{{
-    language
-  }}</option>
-</select>
-
-<select
-  [(ngModel)]="translate.targetLanguage"
-  (ngModelChange)="onOriginalTextChanged()"
->
-  <option *ngFor="let language of languages" [ngValue]="language">{{
-    language
-  }}</option>
-</select>
-
-<input
-  [(ngModel)]="translate.originalText"
-  placeholder="input"
-  (ngModelChange)="onOriginalTextChanged()"
-/>
-<input [(ngModel)]="translate.translatedText" />
+<mat-grid-list cols="2" rowHeight="200px">
+  <mat-grid-tile>
+    <mat-form-field appearance="fill">
+      <mat-label>Выберите язык</mat-label>
+      <mat-select
+        [(value)]="translate.sourceLanguage"
+        (selectionChange)="onTranslateParametersChanged()"
+      >
+        <mat-option *ngFor="let language of languages" [value]="language">
+          {{ language }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field appearance="fill">
+      <mat-label>Выберите язык</mat-label>
+      <mat-select
+        [(value)]="translate.targetLanguage"
+        (selectionChange)="onTranslateParametersChanged()"
+      >
+        <mat-option *ngFor="let language of languages" [value]="language">
+          {{ language }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Оригинальный текст</mat-label>
+        <input
+          matInput
+          [(ngModel)]="translate.sourceText"
+          (ngModelChange)="onTranslateParametersChanged()"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Перевод</mat-label>
+        <input
+          matInput
+          readonly
+          [(ngModel)]="translate.translatedText"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <button mat-raised-button color="primary" (click)="addTranslate()">
+      Добавить перевод
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

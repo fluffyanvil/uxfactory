@@ -17,11 +17,11 @@ export class GoogleTranslateService {
   private key = 'AIzaSyDLL_IxdCMXzhnZO1oBXHk6rRDCCro11tA';
 
   getTranslate(
-    originalText: string,
-    originalLang: string,
+    sourceText: string,
+    sourceLang: string,
     targetLang: string
   ): Observable<string> {
-    const googleObj = new GoogleObject(originalText, originalLang, targetLang);
+    const googleObj = new GoogleObject(sourceText, sourceLang, targetLang);
     this.logger.log(googleObj);
     return this.httpClient
       .post(this.translateRequestUrl + this.key, googleObj)

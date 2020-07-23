@@ -1,6 +1,7 @@
 export class Translate {
-  originalText: string;
+  sourceText: string;
   translatedText: string;
-  originalLanguage: string;
+  sourceLanguage: string;
   targetLanguage: string;
+  created: string;
 }

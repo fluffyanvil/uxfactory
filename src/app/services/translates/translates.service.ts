@@ -19,17 +19,29 @@ export class TranslatesService {
   }
 
   saveTranslate(item: Translate) {
+    item.created = new Date().toISOString();
     this.translates.push(item);
-    localStorage.setItem(
-      this.translateListItemName,
-      JSON.stringify(this.translates)
-    );
-    this.logger.log(this.translates);
+    this.saveTranslates();
+  }
+
+  removeTranslate(item: Translate) {
+    const index: number = this.translates.indexOf(item);
+    if (index !== -1) {
+      this.translates.splice(index, 1);
+    }
+    this.saveTranslates();
   }
 
   clear(): void {
     localStorage.setItem(this.translateListItemName, '');
     var translates = localStorage.getItem(this.translateListItemName);
     this.translates = translates != '' ? JSON.parse(translates) : [];
+  }
+
+  private saveTranslates(): void {
+    localStorage.setItem(
+      this.translateListItemName,
+      JSON.stringify(this.translates)
+    );
   }
 }

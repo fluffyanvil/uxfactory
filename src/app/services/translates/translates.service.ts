@@ -10,8 +10,8 @@ export class TranslatesService {
   private translateListItemName: string = 'translates';
 
   constructor(private logger: LoggerService) {
-    var translates = localStorage.getItem(this.translateListItemName);
-    this.translates = translates != '' ? JSON.parse(translates) : [];
+    var translatesJson = localStorage.getItem(this.translateListItemName);
+    this.translates = !translatesJson ? [] : JSON.parse(translatesJson);
   }
 
   getTranslates(): Translate[] {

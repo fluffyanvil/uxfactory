@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddTranslateComponent } from './add-translate.component';
 
 describe('AddTranslateComponent', () => {
@@ -8,9 +8,9 @@ describe('AddTranslateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddTranslateComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [AddTranslateComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
